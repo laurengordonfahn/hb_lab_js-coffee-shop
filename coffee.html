@@ -43,40 +43,25 @@
         <h4>Total: <span id="revenue"><!-- Revenue Message will show up here --></span></h4>
     </div>
 </div>
-
+<script src="http://code.jquery.com/jquery.js"></script>
 <script>
+    "use strict";
 
-    // Set these variables to their DOM elements
+    var drinksOrdered = []
 
-    var myImage = document.getElementById("coffee-image");
-    var myRevenueMessage = document.getElementById("revenue");
+    $("#coffee-image").attr("src", "static/coffee_beans.jpg");
 
-    myImage.setAttribute('src', 'static/coffee_beans.jpg');
-
-    function startCoffee(){
-        myImage.setAttribute('src', 'static/coffee_machine.jpg');
+    function makeCoffee(drinkType) {
+        drinksOrdered.push(drinkType);
+        console.log(drinksOrdered);
+       setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_machine.jpg");}, 1500);
+        setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_mug.jpg");}, 2500);
+        setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_beans.jpg");}, 4000);
     }
 
-    function makeCoffee() {
 
-        myImage.setAttribute('src', 'static/coffee_mug.jpg');
-    }
 
-    function coffeeBean(){
-        myImage.setAttribute('src', 'static/coffee_beans.jpg');
-    }
-    
-    function coffeeGenerator() {
-        setTimeout(startCoffee, 1500);
-        setTimeout(makeCoffee, 2500); 
-        setTimeout(coffeeBean, 4000);
-
-    }
-
-    
-
-    myImage.addEventListener('click', coffeeGenerator);
-    
+    $("#coffee-image").on("click", function () { return makeCoffee('brew'); });
 
     // use this JavaScript object in further study step
 
