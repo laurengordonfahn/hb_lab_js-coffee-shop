@@ -49,28 +49,54 @@
 
     var drinksOrdered = []
 
+    $("#espresso").on("click", function(){ makeCoffee('espresso'); });
+    $("#latte").on("click", function(){ makeCoffee('latte'); });
+    $("#hot-chocolate").on("click", function(){ makeCoffee('hot-chocolate'); });
+
     $("#coffee-image").attr("src", "static/coffee_beans.jpg");
+
+    // var myRevenueMessage = document.getElementById("revenue");
+    
 
     function makeCoffee(drinkType) {
         drinksOrdered.push(drinkType);
         console.log(drinksOrdered);
-       setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_machine.jpg");}, 1500);
+        setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_machine.jpg");}, 1500);
         setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_mug.jpg");}, 2500);
         setTimeout(function() {$("#coffee-image").attr("src", "static/coffee_beans.jpg");}, 4000);
     }
 
+    $("#coffee-image").on("click", function () { makeCoffee('brew'); });
 
+    function revenue() {
+        var prices = 0;
+        for (i=0; i< drinksOrdered.length; i++){      
+            if(drinksOrdered[i] === "espresso"){
+                prices+= 3.25;
+            }
+            else if(drinksOrdered[i] === "latte"){
+                prices+= 4.15;
+            }
+            else if(drinksOrdered[i] === "hot-chocolate"){
+                prices+= 2.50;
+            }
+            else if(drinksOrdered[i] === "brew"){
+                prices+= 1.00;
+            }
+        return $("#revenue").html("Your drink order comes to, " + prices) 
 
-    $("#coffee-image").on("click", function () { return makeCoffee('brew'); });
+    }
 
+    revenue()
+ 
     // use this JavaScript object in further study step
 
-    var prices = {
-        "brew": 2.05,
-        "espresso": 3.25,
-        "latte": 4.15,
-        "hot chocolate": 2.50
-    };
+    // var prices = {
+    //     "brew": 2.05,
+    //     "espresso": 3.25,
+    //     "latte": 4.15,
+    //     "hot chocolate": 2.50
+    // };
 
 
 </script>
